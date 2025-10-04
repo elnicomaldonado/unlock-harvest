@@ -63,8 +63,8 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
     /// @notice Default deadline (6 months in seconds)
     uint256 public constant DEFAULT_DEADLINE = 180 days;
 
-    /// @notice Minimum escrow amount (100 cUSD)
-    uint256 public constant MIN_ESCROW_AMOUNT = 100 * 10**18;
+    /// @notice Minimum escrow amount (0.01 cUSD)
+    uint256 public constant MIN_ESCROW_AMOUNT = 1 * 10**16;
 
     /// @notice Maximum escrow amount (100,000 cUSD)
     uint256 public constant MAX_ESCROW_AMOUNT = 100_000 * 10**18;

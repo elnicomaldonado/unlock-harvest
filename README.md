@@ -6,13 +6,21 @@
 [![Network](https://img.shields.io/badge/network-Celo-yellow)](https://celo.org)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.20-blue)](https://soliditylang.org/)
 
-## 🚀 Live Deployment (Celo Alfajores Testnet)
+## 🚀 Live Deployment (Celo Sepolia Testnet)
+
+**⚠️ Migration to Celo Sepolia Complete**
 
 | Contract | Address | Explorer |
 |----------|---------|----------|
-| **CacaoHarvestNFT** | 0xd86aa1347FAC13D4673a3CA346b7C8a39F4465d3 | [View](https://alfajores.celoscan.io/address/0xd86aa1347FAC13D4673a3CA346b7C8a39F4465d3) |
-| **FarmerReputationBadge** | 0x82dA5C8997037588c18250EeD881857134dC9863 | [View](https://alfajores.celoscan.io/address/0x82dA5C8997037588c18250EeD881857134dC9863) |
-| **CacaoEscrow** | 0x95bc8aEe1FF04EdB02062F2c2dbEB92E0b074f83 | [View](https://alfajores.celoscan.io/address/0x95bc8aEe1FF04EdB02062F2c2dbEB92E0b074f83) |
+| **CacaoHarvestNFT** | _Deploy to get address_ | [Blockscout](https://celo-sepolia.blockscout.com) |
+| **FarmerReputationBadge** | _Deploy to get address_ | [Blockscout](https://celo-sepolia.blockscout.com) |
+| **CacaoEscrow** | _Deploy to get address_ | [Blockscout](https://celo-sepolia.blockscout.com) |
+
+**Network Details:**
+- Chain ID: `11142220`
+- RPC: `https://forno.celo.org/celo-sepolia`
+- Faucet: https://faucet.celo.org
+- Minimum Escrow: `0.01 cUSD` (reduced for testing)
 
 ## 🎯 Problem
 

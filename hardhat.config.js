@@ -18,17 +18,17 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 1337,
-      // Forking Celo Alfajores for local testing (optional)
+      // Forking Celo Sepolia for local testing (optional)
       // forking: {
-      //   url: process.env.CELO_ALFAJORES_RPC || "https://alfajores-forno.celo-testnet.org",
+      //   url: process.env.CELO_SEPOLIA_RPC || "https://forno.celo.org/celo-sepolia",
       // },
     },
-    alfajores: {
-      url: process.env.CELO_ALFAJORES_RPC || "https://alfajores-forno.celo-testnet.org",
+    "celo-sepolia": {
+      url: process.env.CELO_SEPOLIA_RPC || "https://forno.celo-sepolia.celo-testnet.org",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-      chainId: 44787,
+      chainId: 11142220,
       gas: "auto",
-      gasPrice: "auto",
+      gasPrice: 50000000000, // 50 gwei - increased for Celo Sepolia
     },
     celo: {
       url: process.env.CELO_MAINNET_RPC || "https://forno.celo.org",
@@ -58,16 +58,16 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      alfajores: process.env.CELOSCAN_API_KEY || "",
+      "celo-sepolia": "BLOCKSCOUT", // Blockscout doesn't require API key
       celo: process.env.CELOSCAN_API_KEY || "",
     },
     customChains: [
       {
-        network: "alfajores",
-        chainId: 44787,
+        network: "celo-sepolia",
+        chainId: 11142220,
         urls: {
-          apiURL: "https://api-alfajores.celoscan.io/api",
-          browserURL: "https://alfajores.celoscan.io",
+          apiURL: "https://celo-sepolia.blockscout.com/api",
+          browserURL: "https://celo-sepolia.blockscout.com",
         },
       },
       {

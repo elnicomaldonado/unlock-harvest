@@ -16,7 +16,7 @@ const path = require("path")
 // cUSD token addresses by network
 const CUSD_ADDRESSES = {
   mainnet: "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
-  alfajores: "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1", // Same on testnet
+  "celo-sepolia": "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1", // cUSD on Celo Sepolia
   localhost: "0x0000000000000000000000000000000000000000" // Will be deployed mock
 }
 

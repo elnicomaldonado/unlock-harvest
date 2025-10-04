@@ -43,9 +43,9 @@ async function main() {
     console.log(`   You need at least ${estimatedCost} CELO to deploy.`)
     console.log(`   Current balance: ${balanceInCelo} CELO\n`)
 
-    if (network === "alfajores") {
+    if (network === "celo-sepolia") {
       console.log("💡 Get testnet CELO:")
-      console.log("   Visit: https://faucet.celo.org/alfajores")
+      console.log("   Visit: https://faucet.celo.org")
       console.log(`   Enter your address: ${address}\n`)
     } else if (network === "celo") {
       console.log("💡 Get mainnet CELO:")
@@ -66,11 +66,11 @@ async function main() {
   }
 
   // Show network info
-  if (network === "alfajores") {
+  if (network === "celo-sepolia") {
     console.log("📍 Network Info:")
-    console.log("   Testnet: Celo Alfajores")
-    console.log("   Explorer: https://alfajores.celoscan.io")
-    console.log(`   Your Address: https://alfajores.celoscan.io/address/${address}\n`)
+    console.log("   Testnet: Celo Sepolia")
+    console.log("   Explorer: https://celo-sepolia.blockscout.com")
+    console.log(`   Your Address: https://celo-sepolia.blockscout.com/address/${address}\n`)
   } else if (network === "celo") {
     console.log("📍 Network Info:")
     console.log("   Mainnet: Celo")

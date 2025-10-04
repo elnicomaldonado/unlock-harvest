@@ -21,26 +21,27 @@ PRIVATE_KEY=your_private_key_here
 # ============================================
 
 # Celo Mainnet
-CELO_RPC_URL=https://forno.celo.org
+CELO_MAINNET_RPC=https://forno.celo.org
 
-# Celo Alfajores Testnet
-ALFAJORES_RPC_URL=https://alfajores-forno.celo-testnet.org
+# Celo Sepolia Testnet
+CELO_SEPOLIA_RPC=https://forno.celo.org/celo-sepolia
 
 # ============================================
 # BLOCK EXPLORER API KEYS
 # ============================================
 
-# Celoscan API key for contract verification
+# Celoscan API key for contract verification (mainnet only)
 # Get yours at: https://celoscan.io/myapikey
+# Note: Celo Sepolia uses Blockscout - no API key needed
 CELOSCAN_API_KEY=your_celoscan_api_key_here
 
 # ============================================
 # TOKEN ADDRESSES (Pre-configured)
 # ============================================
 
-# cUSD addresses (same on mainnet and alfajores)
+# cUSD addresses (same on mainnet and Celo Sepolia)
 CUSD_MAINNET=0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1
-CUSD_ALFAJORES=0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1
+CUSD_CELO_SEPOLIA=0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1
 
 # ============================================
 # GAS CONFIGURATION
@@ -79,8 +80,15 @@ COINMARKETCAP_API_KEY=
 4. Add it to your `.env` file
 
 ### Getting Testnet CELO
-1. Visit https://faucet.celo.org/alfajores
-2. Enter your wallet address
-3. Receive free testnet CELO
-4. Use it to deploy and test
+1. Visit https://faucet.celo.org
+2. Select "Celo Sepolia Testnet"
+3. Enter your wallet address
+4. Receive free testnet CELO
+5. Use it to deploy and test
+
+### Network Info
+- **Testnet:** Celo Sepolia (Chain ID: 11142220)
+- **RPC:** https://forno.celo.org/celo-sepolia
+- **Explorer:** https://celo-sepolia.blockscout.com
+- **Minimum Escrow:** 0.01 cUSD (reduced for testing)
 

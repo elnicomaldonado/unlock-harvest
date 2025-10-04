@@ -25,7 +25,7 @@ describe("CacaoEscrow", function () {
   }
 
   // Constants
-  const MIN_ESCROW_AMOUNT = ethers.parseUnits("100", 18)
+  const MIN_ESCROW_AMOUNT = ethers.parseUnits("0.01", 18) // 0.01 cUSD (Celo Sepolia)
   const MAX_ESCROW_AMOUNT = ethers.parseUnits("100000", 18)
   const DEFAULT_DEADLINE = 180 * 24 * 60 * 60 // 6 months in seconds
 
@@ -199,7 +199,7 @@ describe("CacaoEscrow", function () {
 
     it("Should revert on amount below minimum", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const tooLow = ethers.parseUnits("99", 18)
+      const tooLow = ethers.parseUnits("0.009", 18) // Below 0.01 cUSD minimum
 
       await expect(
         escrow.connect(investor).createEscrow(
