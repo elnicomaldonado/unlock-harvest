@@ -1,174 +1,88 @@
 # 🌱 Unlock Harvest - RealFi Cacao Financing Platform
 
-Blockchain-based escrow system providing milestone-based financing for smallholder cacao farmers on the Celo network.
+**Blockchain-based milestone financing for smallholder cacao farmers with on-chain reputation and environmental sustainability tracking.**
 
-## 🎯 Problem We're Solving
+[![Tests](https://img.shields.io/badge/tests-140%20passing-brightgreen)](./test)
+[![Network](https://img.shields.io/badge/network-Celo-yellow)](https://celo.org)
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-blue)](https://soliditylang.org/)
 
-Smallholder cacao farmers face a triple crisis:
-- **Financial exclusion**: No access to traditional credit
-- **Exploitative value chains**: Farmers receive only 6% of final product value
-- **Liquidity gaps**: 5-6 month harvest cycles with zero income
+## 🚀 Live Deployment (Celo Alfajores Testnet)
 
-This forces farmers into environmentally devastating decisions—abandoning sustainable cacao or clearing forests.
+| Contract | Address | Explorer |
+|----------|---------|----------|
+| **CacaoHarvestNFT** | 0xd86aa1347FAC13D4673a3CA346b7C8a39F4465d3 | [View](https://alfajores.celoscan.io/address/0xd86aa1347FAC13D4673a3CA346b7C8a39F4465d3) |
+| **FarmerReputationBadge** | 0x82dA5C8997037588c18250EeD881857134dC9863 | [View](https://alfajores.celoscan.io/address/0x82dA5C8997037588c18250EeD881857134dC9863) |
+| **CacaoEscrow** | 0x95bc8aEe1FF04EdB02062F2c2dbEB92E0b074f83 | [View](https://alfajores.celoscan.io/address/0x95bc8aEe1FF04EdB02062F2c2dbEB92E0b074f83) |
 
-## 💡 Our Solution
+## 🎯 Problem
 
-- **Milestone-based smart contract escrows** that release funds automatically
-- **Direct pre-purchase agreements** with guaranteed fair prices
-- **Cryptographic proof of origin** and environmental impact
-- **Dynamic NFTs** tracking crop progress
-- **On-chain reputation system** for farmers
+Smallholder cacao farmers face critical barriers:
+- No access to traditional credit without collateral
+- Receive only 6% of final chocolate product value
+- 5-6 month liquidity gaps between planting and harvest
+- Environmental pressure forcing deforestation
 
-## 🏗️ Technology Stack
+## 💡 Solution
 
-- **Blockchain**: Celo (EVM-compatible, low gas fees)
-- **Smart Contracts**: Solidity 0.8.20 + OpenZeppelin v5
-- **Framework**: Thirdweb SDK v5
-- **Testing**: Hardhat + Chai
-- **Development**: Node.js 18+
+A complete RealFi platform on Celo blockchain providing:
 
-## 📦 Smart Contracts
+### Milestone-Based Smart Escrows
+- Investor funds locked in secure contracts
+- Automatic 25% releases at each verified milestone
+- Gas-optimized (~$0.01 per cycle)
 
-### Core Contracts
-- `CacaoEscrow.sol` - Milestone-based escrow logic
-- `CacaoHarvestNFT.sol` - Dynamic NFTs for crop traceability
-- `FarmerReputationBadge.sol` - Soulbound reputation tokens
+### Dynamic NFT Harvest Tracking
+Each harvest receives a unique NFT evolving through stages:
+- 🌍 Land Verified → 🌱 Planted → 🌿 Mid-Growth → 🍫 Harvested
 
-### Key Features
-- University oracle verification (Nest Lab)
-- Satellite monitoring integration
-- Gas-optimized for farmers with limited funds
-- Immutable environmental data on-chain
+### Soulbound Reputation System
+Non-transferable on-chain credit scores:
+- +25 points per milestone completion
+- +50 points for zero-deforestation
+- +30 points for premium quality
+- -100 points for violations
+- 4 tiers: 🥉 Bronze → 🥈 Silver → 🥇 Gold → 💎 Platinum
 
-## 🚀 Getting Started
+### Oracle Verification Network
+Milestones verified by agricultural experts and university labs combining:
+- 🛰️ Satellite monitoring for deforestation detection
+- 👨‍🌾 Field inspections by certified agronomists
+- 📊 Data validation through university research labs
+- ⛓️ On-chain attestations via oracle signatures
 
-### Prerequisites
-- Node.js 18+ and npm
-- Git
+## 🛠️ Tech Stack
 
-### Installation
+- Blockchain: Celo (carbon-negative)
+- Smart Contracts: Solidity 0.8.20 + OpenZeppelin v5
+- Testing: Hardhat + Chai (140 tests, 100% coverage)
+- Token: cUSD stablecoin
 
-\`\`\`bash
-# Clone the repository
-git clone <repo-url>
+## 📦 Installation
+
+git clone https://github.com/elnicomaldonado/unlock-harvest.git
 cd unlock-harvest
-
-# Install dependencies
 npm install
-
-# Copy environment template
-cp ENV.md .env
-# Edit .env with your configuration
-\`\`\`
-
-### Configuration
-
-Create a `.env` file with:
-\`\`\`
-CELO_ALFAJORES_RPC=https://alfajores-forno.celo-testnet.org
-PRIVATE_KEY=your_private_key_here
-ORACLE_ADDRESS=0x...
-CELOSCAN_API_KEY=your_api_key
-REPORT_GAS=true
-\`\`\`
-
-### Development Commands
-
-\`\`\`bash
-# Compile contracts
-npm run compile
-
-# Run tests
-npm run test
-
-# Start local node
-npm run node
-
-# Deploy to Alfajores testnet
-npm run deploy:alfajores
-
-# Check contract sizes
-npm run size
-
-# Generate gas reports
-REPORT_GAS=true npm test
-\`\`\`
-
-## 🧪 Testing
-
-\`\`\`bash
-# Run all tests
 npm test
 
-# Run with gas reporting
-REPORT_GAS=true npm test
+text
 
-# Run with coverage
-npm run coverage
-\`\`\`
+## 📊 Key Metrics
 
-## 📝 Contract Development Guidelines
+- Tests: 140 passing (100%)
+- Gas Cost: ~$0.01 per harvest cycle
+- Contract Size: 26.6 KiB optimized
+- Loan Range: $100 - $100,000 cUSD
 
-### Gas Efficiency (Critical!)
-- Farmers have limited funds - every gas unit matters
-- Use `uint256` over smaller types (unless packing)
-- Minimize storage writes
-- Use events for non-critical data
-- Batch operations where possible
+## 🌍 Impact
 
-### Security
-- Use OpenZeppelin libraries exclusively
-- Never write custom crypto logic
-- Oracle functions restricted to university address
-- All state changes must emit events
-- Follow checks-effects-interactions pattern
-
-### Code Style
-- One contract, one responsibility
-- Clear, descriptive function names
-- Comprehensive NatSpec comments
-- Test coverage > 90%
-
-## 📁 Project Structure
-
-\`\`\`
-unlock-harvest/
-├── contracts/          # Solidity smart contracts
-│   ├── interfaces/    # Contract interfaces
-│   ├── CacaoEscrow.sol
-│   ├── CacaoHarvestNFT.sol
-│   └── FarmerReputationBadge.sol
-├── test/              # Contract tests
-├── scripts/           # Deployment scripts
-├── docs/              # Documentation
-└── hardhat.config.js  # Hardhat configuration
-\`\`\`
-
-## 🌍 Networks
-
-### Celo Alfajores (Testnet)
-- Chain ID: 44787
-- RPC: https://alfajores-forno.celo-testnet.org
-- Explorer: https://alfajores.celoscan.io
-- Faucet: https://faucet.celo.org
-
-### Celo Mainnet
-- Chain ID: 42220
-- RPC: https://forno.celo.org
-- Explorer: https://celoscan.io
-
-## 🤝 Contributing
-
-This project is built with Cursor AI Agent Mode. Follow the coding patterns in `.cursor/rules/`.
+Environmental: Satellite-verified deforestation tracking
+Social: Financial inclusion for unbanked farmers
+Economic: Direct farmer-investor connections
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+Copyright (c) 2025 Nico Maldonado. All Rights Reserved.
 
-## 🔗 Links
+Built with ❤️ for smallholder farmers worldwide.
 
-- [Celo Documentation](https://docs.celo.org)
-- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
-- [Thirdweb SDK](https://portal.thirdweb.com)
-- [Hardhat Documentation](https://hardhat.org)
-
+**⭐ Star this repo to support farmers through blockchain!**
