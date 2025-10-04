@@ -1,0 +1,56 @@
+---
+description: "RealFi Cacao Platform - Core Architecture"
+alwaysApply: true
+---
+
+# RealFi Cacao Financing Platform
+
+## Tech Stack
+- Blockchain: Celo (EVM-compatible, low fees)
+- Smart Contracts: Solidity 0.8.20+
+- Framework: Thirdweb SDK v5
+- Testing: Hardhat + Chai
+- Frontend: React 18 + TypeScript + Vite
+- Styling: Tailwind CSS v4
+- State: React Query + Zustand
+- Web3: Thirdweb Connect SDK + ethers.js v6
+
+## Project Structure
+contracts/
+├── CacaoEscrow.sol # Main escrow logic
+├── CacaoHarvestNFT.sol # Dynamic NFT for traceability
+├── FarmerReputationBadge.sol # Soulbound reputation token
+└── interfaces/ # Contract interfaces
+
+frontend/
+├── src/
+│ ├── components/ # React components
+│ ├── hooks/ # Custom React hooks
+│ ├── contexts/ # React contexts
+│ └── contracts/ # Generated contract ABIs
+
+## Key Principles
+1. **Gas Efficiency**: Farmers have limited funds - optimize every transaction
+2. **Security First**: Use OpenZeppelin libraries, avoid custom crypto logic
+3. **User Experience**: Non-technical farmers will use this - keep UI simple
+4. **Immutability**: All environmental data must be permanently on-chain
+5. **Modularity**: Each contract has ONE responsibility
+
+## Development Commands
+Smart Contracts
+npx hardhat compile # Compile contracts
+npx hardhat test # Run tests
+npx hardhat node # Start local blockchain
+npx thirdweb deploy # Deploy to testnet
+
+Frontend
+npm run dev # Start dev server
+npm run build # Production build
+npm run generate-types # Generate TypeScript types from ABIs
+
+## Oracle Integration
+- University (Nest Lab) acts as trusted oracle
+- Oracle address: Stored in environment variables
+- Oracle functions: ONLY callable by designated address
+- Satellite data: Verified monthly, stored as IPFS hashes
+

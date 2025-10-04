@@ -1,0 +1,51 @@
+---
+description: "React & TypeScript patterns for Web3 frontend"
+globs: ["frontend/**/*.tsx", "frontend/**/*.ts"]
+---
+
+# Frontend Development Patterns
+
+## TypeScript Rules
+- ALWAYS define types for component props
+- Use TypeScript strict mode
+- Avoid any - use unknown if type is uncertain
+
+## Web3 Integration with Thirdweb
+
+### Reading Contract Data
+import { useReadContract } from "thirdweb/react";
+
+const { data: reputation } = useReadContract({
+  contract,
+  method: "getFarmerScore",
+  params: [address]
+});
+
+### Writing to Contracts
+import { useSendTransaction } from "thirdweb/react";
+
+const { mutate: sendTx } = useSendTransaction();
+
+const handleComplete = () => {
+  const tx = prepareContractCall({
+    contract: escrowContract,
+    method: "completeMilestone",
+    params: [escrowId]
+  });
+  
+  sendTx(tx, {
+    onSuccess: () => toast.success("Done!"),
+    onError: (error) => toast.error(error.message)
+  });
+};
+
+## State Management
+- Use React Query for blockchain state
+- Use Zustand for client UI state
+- Never duplicate blockchain data in local state
+
+## Error Handling
+- Always handle Web3 errors gracefully
+- Show user-friendly messages
+- Display transaction hashes for debugging
+

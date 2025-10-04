@@ -1,0 +1,12 @@
+{
+  "network": "alfajores",
+  "timestamp": "2025-10-04T00:12:27.572Z",
+  "addresses": {
+    "deployer": "0xA58809476a2CCBa71A53B3f3C2d984Db673238dD",
+    "oracle": "0x751E3EF3858102230FcbFcbaD0B212a4235DF59C",
+    "cUSD": "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
+    "harvestNFT": "0xd86aa1347FAC13D4673a3CA346b7C8a39F4465d3",
+    "reputationBadge": "0x82dA5C8997037588c18250EeD881857134dC9863",
+    "escrow": "0x95bc8aEe1FF04EdB02062F2c2dbEB92E0b074f83"
+  }
+}

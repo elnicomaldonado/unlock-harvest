@@ -1,0 +1,45 @@
+---
+description: "Solidity best practices for RealFi contracts"
+globs: ["contracts/**/*.sol", "test/**/*.js"]
+---
+
+# Solidity Development Patterns
+
+## General Rules
+- Use Solidity 0.8.20 or higher (built-in overflow protection)
+- ALWAYS import from OpenZeppelin (@openzeppelin/contracts)
+- Include NatSpec comments for ALL public/external functions
+- Use custom errors instead of require strings (gas savings)
+- Emit events for ALL state changes
+
+## Security Patterns
+
+### Access Control
+import "@openzeppelin/contracts/access/AccessControl.sol";
+
+contract CacaoEscrow is AccessControl {
+    bytes32 public constant ORACLE_ROLE = keccak256("ORACLE_ROLE");
+    
+    modifier onlyOracle() {
+        require(hasRole(ORACLE_ROLE, msg.sender), "Not oracle");
+        _;
+    }
+}
+
+### Reentrancy Protection
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
+function releaseFunds() external nonReentrant {
+    // Transfer logic here
+}
+
+## Gas Optimization
+- Use mappings over arrays when possible
+- Pack struct variables efficiently (uint128, uint64, etc.)
+- Use events instead of storing data when possible
+
+## Testing Requirements
+- MUST have 100% coverage for critical functions
+- Test both success and failure cases
+- Include gas usage reports
+

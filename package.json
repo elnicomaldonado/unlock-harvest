@@ -1,0 +1,44 @@
+{
+  "name": "unlock-harvest",
+  "version": "1.0.0",
+  "description": "RealFi Cacao Financing Platform - Blockchain-based escrow system for smallholder cacao farmers",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "thirdweb deploy",
+    "deploy:alfajores": "hardhat run scripts/deploy.js --network alfajores",
+    "size": "hardhat size-contracts",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "cacao",
+    "realfi",
+    "blockchain",
+    "celo",
+    "defi",
+    "escrow"
+  ],
+  "author": "Unlock Harvest",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@typechain/ethers-v6": "^0.5.0",
+    "@typechain/hardhat": "^9.0.0",
+    "chai": "^4.3.10",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.9.0",
+    "hardhat": "^2.19.0",
+    "hardhat-contract-sizer": "^2.10.0",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.5",
+    "typechain": "^8.3.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "@thirdweb-dev/contracts": "^3.14.0"
+  }
+}
+
