@@ -13,10 +13,10 @@ const path = require("path")
  * Handles ownership transfers and contract configuration automatically.
  */
 
-// cUSD token addresses by network
-const CUSD_ADDRESSES = {
-  mainnet: "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
-  "celo-sepolia": "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1", // cUSD on Celo Sepolia
+// USDC token addresses by network (6 decimals)
+const USDC_ADDRESSES = {
+  mainnet: "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1", // Update with actual USDC mainnet address
+  "celo-sepolia": "0x01C5C0122039549AD1493B8220cABEdD739BC44E", // Update with actual USDC Sepolia address
   localhost: "0x0000000000000000000000000000000000000000" // Will be deployed mock
 }
 
@@ -71,8 +71,8 @@ async function main() {
   console.log(`Balance:        ${hre.ethers.formatEther(await hre.ethers.provider.getBalance(deployerAddress))} CELO`)
   console.log("═".repeat(60) + "\n")
 
-  // Determine cUSD address
-  let cUSDAddress = CUSD_ADDRESSES[network] || CUSD_ADDRESSES.alfajores
+  // Determine USDC address
+  let usdcAddress = USDC_ADDRESSES[network] || USDC_ADDRESSES["celo-sepolia"]
   
   // Get oracle address from environment or use deployer
   const oracleAddress = process.env.ORACLE_ADDRESS || deployerAddress
@@ -83,13 +83,13 @@ async function main() {
 
   console.log("📍 Configuration:")
   console.log(`   Oracle:      ${oracleAddress}`)
-  console.log(`   cUSD Token:  ${cUSDAddress}\n`)
+  console.log(`   USDC Token:  ${usdcAddress} (6 decimals)\n`)
 
   // Track all deployed addresses
   const deployedAddresses = {
     deployer: deployerAddress,
     oracle: oracleAddress,
-    cUSD: cUSDAddress
+    usdc: usdcAddress
   }
 
   try {
@@ -146,7 +146,7 @@ async function main() {
     
     const CacaoEscrow = await hre.ethers.getContractFactory("CacaoEscrow")
     const escrow = await CacaoEscrow.deploy(
-      cUSDAddress,
+      usdcAddress,
       oracleAddress,
       harvestNFTAddress,
       reputationBadgeAddress
@@ -164,7 +164,7 @@ async function main() {
     console.log(`✅ CacaoEscrow deployed to: ${escrowAddress}`)
     console.log(`   Owner: ${await escrow.owner()}`)
     console.log(`   Oracle: ${await escrow.oracle()}`)
-    console.log(`   cUSD: ${await escrow.cUSD()}`)
+    console.log(`   USDC: ${await escrow.cUSD()}`) // Variable named cUSD for backward compatibility
     console.log(`   Harvest NFT: ${await escrow.harvestNFT()}`)
     console.log(`   Reputation Badge: ${await escrow.reputationBadge()}\n`)
 
@@ -218,7 +218,7 @@ async function main() {
     console.log(`FarmerReputationBadge: ${reputationBadgeAddress}`)
     console.log(`CacaoEscrow:           ${escrowAddress}`)
     console.log(`\nOracle:                ${oracleAddress}`)
-    console.log(`cUSD Token:            ${cUSDAddress}`)
+    console.log(`USDC Token:            ${usdcAddress} (6 decimals)`)
     console.log("\n" + "═".repeat(60))
 
     // Save deployment addresses
@@ -244,7 +244,7 @@ async function main() {
       console.log(`npx hardhat verify --network ${network} ${reputationBadgeAddress} ${deployerAddress}\n`)
       
       console.log("# 3. Verify CacaoEscrow")
-      console.log(`npx hardhat verify --network ${network} ${escrowAddress} ${cUSDAddress} ${oracleAddress} ${harvestNFTAddress} ${reputationBadgeAddress}\n`)
+      console.log(`npx hardhat verify --network ${network} ${escrowAddress} ${usdcAddress} ${oracleAddress} ${harvestNFTAddress} ${reputationBadgeAddress}\n`)
       
       console.log("═".repeat(60))
 
@@ -278,7 +278,7 @@ async function main() {
           console.log("Verifying CacaoEscrow...")
           await hre.run("verify:verify", {
             address: escrowAddress,
-            constructorArguments: [cUSDAddress, oracleAddress, harvestNFTAddress, reputationBadgeAddress]
+            constructorArguments: [usdcAddress, oracleAddress, harvestNFTAddress, reputationBadgeAddress]
           })
           console.log("✅ CacaoEscrow verified\n")
         } catch (error) {
@@ -293,8 +293,8 @@ async function main() {
     console.log("\n" + "═".repeat(60))
     console.log("🎯 NEXT STEPS")
     console.log("═".repeat(60))
-    console.log("\n1. Fund the escrow with cUSD for testing")
-    console.log("2. Test creating an escrow via frontend or CLI")
+    console.log("\n1. Fund the escrow with USDC (6 decimals) for testing")
+    console.log("2. Test creating an escrow via frontend or CLI (min: 0.01 USDC)")
     console.log("3. Oracle approves milestones to release funds")
     console.log("4. Monitor farmer reputation scores")
     console.log("5. Build React frontend dashboard")

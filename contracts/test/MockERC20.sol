@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
  * @title MockERC20
- * @notice Mock ERC20 token for testing (simulates cUSD)
+ * @notice Mock ERC20 token for testing (simulates USDC with 6 decimals)
  */
 contract MockERC20 is ERC20 {
     uint8 private _decimals;

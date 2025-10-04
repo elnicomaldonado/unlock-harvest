@@ -24,17 +24,17 @@ describe("CacaoEscrow", function () {
     Harvested: 3
   }
 
-  // Constants
-  const MIN_ESCROW_AMOUNT = ethers.parseUnits("0.01", 18) // 0.01 cUSD (Celo Sepolia)
-  const MAX_ESCROW_AMOUNT = ethers.parseUnits("100000", 18)
+  // Constants (USDC has 6 decimals)
+  const MIN_ESCROW_AMOUNT = ethers.parseUnits("0.01", 6) // 0.01 USDC (6 decimals)
+  const MAX_ESCROW_AMOUNT = ethers.parseUnits("100000", 6) // 100,000 USDC (6 decimals)
   const DEFAULT_DEADLINE = 180 * 24 * 60 * 60 // 6 months in seconds
 
   /**
-   * Deploy a mock ERC20 token for testing (cUSD)
+   * Deploy a mock ERC20 token for testing (USDC with 6 decimals)
    */
   async function deployMockToken() {
     const MockERC20 = await ethers.getContractFactory("contracts/test/MockERC20.sol:MockERC20")
-    const token = await MockERC20.deploy("Celo USD", "cUSD", 18)
+    const token = await MockERC20.deploy("USD Coin", "USDC", 6) // 6 decimals like USDC
     return token
   }
 
@@ -73,8 +73,8 @@ describe("CacaoEscrow", function () {
     // Update reputation badge escrow address
     await reputationBadge.setEscrowContract(escrowAddress)
 
-    // Mint cUSD to investor
-    await cUSD.mint(investor.address, ethers.parseUnits("1000000", 18))
+    // Mint USDC to investor (6 decimals)
+    await cUSD.mint(investor.address, ethers.parseUnits("1000000", 6))
 
     // Approve escrow to spend investor's cUSD
     await cUSD.connect(investor).approve(await escrow.getAddress(), ethers.MaxUint256)
@@ -135,7 +135,7 @@ describe("CacaoEscrow", function () {
   describe("1. ESCROW CREATION", function () {
     it("Should create escrow with valid parameters", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
 
       await expect(
         escrow.connect(investor).createEscrow(
@@ -199,7 +199,7 @@ describe("CacaoEscrow", function () {
 
     it("Should revert on amount below minimum", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const tooLow = ethers.parseUnits("0.009", 18) // Below 0.01 cUSD minimum
+      const tooLow = ethers.parseUnits("0.009", 6) // Below 0.01 USDC minimum
 
       await expect(
         escrow.connect(investor).createEscrow(
@@ -213,7 +213,7 @@ describe("CacaoEscrow", function () {
 
     it("Should revert on amount above maximum", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const tooHigh = ethers.parseUnits("100001", 18)
+      const tooHigh = ethers.parseUnits("100001", 6)
 
       await expect(
         escrow.connect(investor).createEscrow(
@@ -227,7 +227,7 @@ describe("CacaoEscrow", function () {
 
     it("Should verify cUSD transferred to escrow", async function () {
       const { escrow, cUSD, investor, farmer1 } = await loadFixture(deployFixture)
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
 
       const escrowAddress = await escrow.getAddress()
       const balanceBefore = await cUSD.balanceOf(escrowAddress)
@@ -247,7 +247,7 @@ describe("CacaoEscrow", function () {
   describe("2. MILESTONE PROGRESSION", function () {
     async function createEscrowFixture() {
       const base = await deployFixture()
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
       await base.escrow.connect(base.investor).createEscrow(
         base.farmer1.address,
         amount,
@@ -355,7 +355,7 @@ describe("CacaoEscrow", function () {
       await expect(
         escrow.connect(oracle).approveMilestone(0, "ipfs://proof3")
       ).to.emit(escrow, "EscrowCompleted")
-        .withArgs(0, farmer1.address, ethers.parseUnits("1000", 18))
+        .withArgs(0, farmer1.address, ethers.parseUnits("1000", 6))
     })
 
     it("Should revert if non-oracle tries to approve", async function () {
@@ -370,7 +370,7 @@ describe("CacaoEscrow", function () {
   describe("3. DEFORESTATION SCENARIOS", function () {
     async function createEscrowFixture() {
       const base = await deployFixture()
-      await createDefaultEscrow(base.escrow, base.investor, base.farmer1, ethers.parseUnits("1000", 18))
+      await createDefaultEscrow(base.escrow, base.investor, base.farmer1, ethers.parseUnits("1000", 6))
       
       // Approve first milestone
       await base.escrow.connect(base.oracle).approveMilestone(0, "ipfs://proof1")
@@ -448,7 +448,7 @@ describe("CacaoEscrow", function () {
   describe("4. PREMIUM QUALITY", function () {
     async function completeEscrowFixture() {
       const base = await deployFixture()
-      await createDefaultEscrow(base.escrow, base.investor, base.farmer1, ethers.parseUnits("1000", 18))
+      await createDefaultEscrow(base.escrow, base.investor, base.farmer1, ethers.parseUnits("1000", 6))
       
       // Complete all milestones
       await base.escrow.connect(base.oracle).approveMilestone(0, "ipfs://proof1")
@@ -570,7 +570,7 @@ describe("CacaoEscrow", function () {
   describe("6. CANCELLATION", function () {
     it("Should allow investor to cancel before milestone 1", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
 
       await escrow.connect(investor).createEscrow(
         farmer1.address,
@@ -587,7 +587,7 @@ describe("CacaoEscrow", function () {
 
     it("Should provide full refund to investor", async function () {
       const { escrow, cUSD, investor, farmer1 } = await loadFixture(deployFixture)
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
 
       const balanceBefore = await cUSD.balanceOf(investor.address)
 
@@ -802,7 +802,7 @@ describe("CacaoEscrow", function () {
   describe("View Functions", function () {
     it("Should return escrow data correctly", async function () {
       const { escrow, investor, farmer1 } = await loadFixture(deployFixture)
-      const amount = ethers.parseUnits("1000", 18)
+      const amount = ethers.parseUnits("1000", 6)
 
       await escrow.connect(investor).createEscrow(
         farmer1.address,

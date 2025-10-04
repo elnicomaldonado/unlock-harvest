@@ -32,8 +32,8 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
     // STATE VARIABLES
     // ============================================
 
-    /// @notice cUSD token (Celo stablecoin)
-    address public immutable cUSD;
+    /// @notice USDC token (6 decimals)
+    address public immutable cUSD; // Named cUSD for backward compatibility
 
     /// @notice Authorized oracle address
     address public immutable oracle;
@@ -63,11 +63,11 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
     /// @notice Default deadline (6 months in seconds)
     uint256 public constant DEFAULT_DEADLINE = 180 days;
 
-    /// @notice Minimum escrow amount (0.01 cUSD)
-    uint256 public constant MIN_ESCROW_AMOUNT = 1 * 10**16;
+    /// @notice Minimum escrow amount (0.01 USDC - 6 decimals)
+    uint256 public constant MIN_ESCROW_AMOUNT = 10_000; // 0.01 USDC
 
-    /// @notice Maximum escrow amount (100,000 cUSD)
-    uint256 public constant MAX_ESCROW_AMOUNT = 100_000 * 10**18;
+    /// @notice Maximum escrow amount (100,000 USDC - 6 decimals)
+    uint256 public constant MAX_ESCROW_AMOUNT = 100_000_000_000; // 100,000 USDC
 
     /// @notice Milestone release percentage (25%)
     uint256 public constant MILESTONE_PERCENTAGE = 25;
@@ -109,7 +109,7 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
 
     /**
      * @notice Deploy the CacaoEscrow contract
-     * @param cUSDAddress cUSD token address (Celo: 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1)
+     * @param cUSDAddress USDC token address (6 decimals)
      * @param oracleAddress Oracle address for verification
      * @param harvestNFTAddress CacaoHarvestNFT contract address
      * @param reputationBadgeAddress FarmerReputationBadge contract address
@@ -120,7 +120,7 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
         address harvestNFTAddress,
         address reputationBadgeAddress
     ) Ownable(msg.sender) {
-        require(cUSDAddress != address(0), "CacaoEscrow: zero cUSD address");
+        require(cUSDAddress != address(0), "CacaoEscrow: zero token address");
         require(oracleAddress != address(0), "CacaoEscrow: zero oracle address");
         require(harvestNFTAddress != address(0), "CacaoEscrow: zero NFT address");
         require(reputationBadgeAddress != address(0), "CacaoEscrow: zero badge address");
@@ -138,7 +138,7 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
     /**
      * @notice Create new escrow for farmer financing
      * @param farmer Address of the farmer
-     * @param amount Total financing amount in cUSD
+     * @param amount Total financing amount in USDC (6 decimals)
      * @param deadline Unix timestamp for completion (0 = default 6 months)
      * @param metadataURI IPFS URI for harvest documentation
      * @return escrowId The ID of the created escrow
@@ -160,7 +160,7 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
             : deadline;
         require(finalDeadline > block.timestamp, "CacaoEscrow: deadline in past");
 
-        // Transfer cUSD from investor to escrow
+        // Transfer USDC from investor to escrow
         IERC20(cUSD).safeTransferFrom(msg.sender, address(this), amount);
 
         // Get next escrow ID
