@@ -1,12 +1,13 @@
 {
   "network": "celo-sepolia",
-  "timestamp": "2025-10-04T06:21:27.782Z",
+  "timestamp": "2025-10-06T01:20:34.194Z",
   "addresses": {
     "deployer": "0xA58809476a2CCBa71A53B3f3C2d984Db673238dD",
     "oracle": "0x751E3EF3858102230FcbFcbaD0B212a4235DF59C",
     "usdc": "0x01C5C0122039549AD1493B8220cABEdD739BC44E",
-    "harvestNFT": "0xF9896d1E730FcADc45a9db5F276a915d72d11Be1",
-    "reputationBadge": "0xB2A9cfDD05E44078a1e21d9193d126BBf3ED501c",
-    "escrow": "0xf7498cb017c8A17c9DF26ed8869418920092F645"
+    "harvestNFT": "0xB28e3a03A73Ee67604F019C56E27382b133240Bb",
+    "reputationBadge": "0x2EC6610557b38967b0DD4580C141DD7311DBa296",
+    "escrow": "0x71F62B09838f0520eFDF42CD92FC74096A2fca87",
+    "marketplace": "0x5e3b189eA42c90d23796Ee21e44f56b8B219e48a"
   }
 }

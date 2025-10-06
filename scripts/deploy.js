@@ -208,17 +208,45 @@ async function main() {
     console.log(`   Badge escrow: ${await reputationBadge.escrowContract()}\n`)
 
     // ============================================
+    // 7. DEPLOY COMMITMENT MARKETPLACE
+    // ============================================
+    console.log("🚀 Step 7/7: Deploying CommitmentMarketplace...")
+    console.log("─".repeat(60))
+    
+    const CommitmentMarketplace = await hre.ethers.getContractFactory("CommitmentMarketplace")
+    const marketplace = await CommitmentMarketplace.deploy(
+      escrowAddress,
+      reputationBadgeAddress
+    )
+    await marketplace.waitForDeployment()
+    
+    // Wait for 2 block confirmations to ensure contract is indexed
+    console.log("   Waiting for block confirmations...")
+    await marketplace.deploymentTransaction().wait(2)
+    
+    const marketplaceAddress = await marketplace.getAddress()
+    
+    deployedAddresses.marketplace = marketplaceAddress
+    
+    console.log(`✅ CommitmentMarketplace deployed to: ${marketplaceAddress}`)
+    console.log(`   Owner: ${await marketplace.owner()}`)
+    console.log(`   Escrow Contract: ${await marketplace.escrowContract()}`)
+    console.log(`   Reputation Contract: ${await marketplace.reputationContract()}`)
+    console.log(`   USDC: ${await marketplace.usdc()}\n`)
+
+    // ============================================
     // DEPLOYMENT SUMMARY
     // ============================================
     console.log("\n" + "═".repeat(60))
     console.log("🎉 DEPLOYMENT SUCCESSFUL!")
     console.log("═".repeat(60))
     console.log("\n📋 Deployed Contract Addresses:\n")
-    console.log(`CacaoHarvestNFT:       ${harvestNFTAddress}`)
-    console.log(`FarmerReputationBadge: ${reputationBadgeAddress}`)
-    console.log(`CacaoEscrow:           ${escrowAddress}`)
-    console.log(`\nOracle:                ${oracleAddress}`)
-    console.log(`USDC Token:            ${usdcAddress} (6 decimals)`)
+    console.log(`CacaoHarvestNFT:        ${harvestNFTAddress}`)
+    console.log(`FarmerReputationBadge:  ${reputationBadgeAddress}`)
+    console.log(`CacaoEscrow:            ${escrowAddress}`)
+    console.log(`CommitmentMarketplace:  ${marketplaceAddress}`)
+    console.log(`\nOracle:                 ${oracleAddress}`)
+    console.log(`USDC Token:             ${usdcAddress} (6 decimals)`)
     console.log("\n" + "═".repeat(60))
 
     // Save deployment addresses
@@ -246,10 +274,13 @@ async function main() {
       console.log("# 3. Verify CacaoEscrow")
       console.log(`npx hardhat verify --network ${network} ${escrowAddress} ${usdcAddress} ${oracleAddress} ${harvestNFTAddress} ${reputationBadgeAddress}\n`)
       
+      console.log("# 4. Verify CommitmentMarketplace")
+      console.log(`npx hardhat verify --network ${network} ${marketplaceAddress} ${escrowAddress} ${reputationBadgeAddress}\n`)
+      
       console.log("═".repeat(60))
 
       // Auto-verify if on testnet
-      if (network === "alfajores") {
+      if (network === "celo-sepolia") {
         console.log("\n🔍 Attempting automatic verification...\n")
         
         try {
@@ -283,6 +314,17 @@ async function main() {
           console.log("✅ CacaoEscrow verified\n")
         } catch (error) {
           console.log(`⚠️  CacaoEscrow verification failed: ${error.message}\n`)
+        }
+
+        try {
+          console.log("Verifying CommitmentMarketplace...")
+          await hre.run("verify:verify", {
+            address: marketplaceAddress,
+            constructorArguments: [escrowAddress, reputationBadgeAddress]
+          })
+          console.log("✅ CommitmentMarketplace verified\n")
+        } catch (error) {
+          console.log(`⚠️  CommitmentMarketplace verification failed: ${error.message}\n`)
         }
       }
     }

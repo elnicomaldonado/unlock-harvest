@@ -256,12 +256,8 @@ contract CacaoEscrow is ICacaoEscrow, ReentrancyGuard, Pausable, Ownable2Step {
     function _completeEscrow(uint256 escrowId) private {
         EscrowData storage escrow = _escrows[escrowId];
 
-        // Pay final milestone (Harvested) - 25%
-        uint256 finalPayment = (escrow.amount * MILESTONE_PERCENTAGE) / 100;
-        escrow.milestonePaidAmount[uint256(Milestone.Harvested)] = finalPayment;
-        IERC20(cUSD).safeTransfer(escrow.farmer, finalPayment);
-
-        // Mark as completed
+        // El último pago ya se hizo en approveMilestone()
+        // Solo marcamos como completado
         escrow.status = EscrowStatus.Completed;
 
         // Calculate total paid
