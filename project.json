@@ -1,25 +1,35 @@
 {
-  "name": "UnlockHarvest - RealFi Hack 2025",
-  "description": "Oracle-verified milestone escrow enabling fair financing for smallholder farmers. Deployed on Celo with built-in climate insurance and portable reputation NFTs.",
-  "track": "RealFi",
+  "name": "UnlockHarvest",
+  "tagline": "RealFi coordination infrastructure for agricultural finance",
+  "description": "Oracle-verified milestone escrow enabling fair financing for smallholder farmers. Mobile-first on Celo with community risk-sharing insurance and portable reputation NFTs. Coordination infrastructure that connects buyers, farmers, and capital fairly.",
+  "track": "Build RealFi",
   "bounty": "Coordination Infrastructure",
+  "realfi_use_case": [
+    "Peer-to-peer microloan platform matching buyers and farmers",
+    "Portable trust layer (reputation NFTs)",
+    "Community savings/insurance pools (parametric climate protection)"
+  ],
+  "why_realfi_not_defi": "Serves real cacao production with verifiable outcomes. No speculation, token farming, or extractive mechanics. Collective insurance pool protects community resilience. Mobile-first on Celo for financial inclusion.",
   "team": [
     {
-      "name": "Nico",
+      "name": "Nico Maldonado",
       "role": "Full Stack Developer & Smart Contract Engineer",
-      "github": "elnicomaldonado"
+      "github": "elnicomaldonado",
+      "location": "Ecuador"
     }
   ],
   "demo": {
     "url": "https://unlock-harvest.replit.app",
-    "video": "YOUR_YOUTUBE_URL"
+    "video": "TBD - Add your 4 minute demo video URL here",
+    "slides": "TBD - Add your slide deck URL here"
   },
   "repository": {
-    "url": "https://github.com/your-repo/unlock-harvest",
+    "url": "https://github.com/elnicomaldonado/unlock-harvest",
     "branch": "main"
   },
   "contracts": {
     "network": "Celo Sepolia Testnet",
+    "verified": true,
     "addresses": {
       "CommitmentMarketplace": "0x5e3b189eA42c90d23796Ee21e44f56b8B219e48a",
       "CacaoEscrow": "0x4B0291561f3Bc9cd7a72f4124E10020444f3a15d",
@@ -28,27 +38,78 @@
       "Oracle": "0x751E3EF3858102230FcbFcbaD0B212a4235DF59C"
     }
   },
-  "problem": "70% of cacao farmers in Ecuador are forced to sell future harvests at 40-60% below market price due to 6-month working capital gap.",
-  "solution": "Oracle-verified milestone escrow contracts that release USDC payments throughout the growing season at 4 verified stages (planting, growth, pre-harvest, delivery).",
-  "innovation": "Satellite-based verification + portable reputation NFTs + parametric climate insurance (Phase 2 vision).",
-  "impact": "Enables fair financing for smallholder farmers, reduces supply chain risk for buyers, and creates portable credit history for agricultural workers.",
+  "problem": {
+    "summary": "70% of cacao farmers in Ecuador are forced to sell future harvests at 40-60% below market price due to 6-month working capital gap",
+    "root_cause": "Lack of coordination infrastructure between buyers, farmers, and capital providers",
+    "current_harm": "Farmers trapped in debt cycles, buyers face supply uncertainty, capital providers can't verify outcomes"
+  },
+  "solution": {
+    "summary": "RealFi coordination infrastructure using oracle-verified milestone escrows",
+    "mechanism": "USDC payments released at 4 verified stages (planting, growth, pre-harvest, delivery)",
+    "coordination": "Smart contracts align incentives for buyers (guaranteed supply), farmers (fair payment), and investors (verified returns)"
+  },
+  "realfi_principles": {
+    "productive_capital": "Funds flow to actual cacao production, not speculation",
+    "portable_trust": "Reputation NFTs create credit history that travels with farmers",
+    "collective_resilience": "Community-funded insurance pool protects against climate shocks",
+    "mobile_accessibility": "Celo enables smartphone-based access (phone numbers, not wallet addresses)",
+    "verifiable_impact": "Oracle verification ensures funds reach intended outcomes",
+    "non_extractive": "Farmers build equity through reputation, not debt spirals"
+  },
+  "why_celo": {
+    "mobile_first": "Ultra-light clients enable farmers to transact via smartphone",
+    "low_fees": "< $0.01 transaction costs preserve value for smallholder farmers",
+    "stablecoin_native": "USDC protects purchasing power during 6-month growing cycle",
+    "social_purpose": "Aligns with Celo's mission of prosperity for all",
+    "phone_based_identity": "Farmers can use phone numbers, not complex wallet addresses"
+  },
+  "innovation": {
+    "oracle_verification": "Satellite + field verification of crop quality and deforestation",
+    "portable_reputation": "NFT-based credit history that travels across platforms",
+    "parametric_insurance": "Community pool with automatic climate event payouts",
+    "buyer_commitments": "Purchase agreements create guaranteed markets before planting"
+  },
+  "impact": {
+    "farmers_served": "Target 100+ smallholder farmers in Ecuador Year 1",
+    "capital_unlocked": "Eliminates 40-60% discount on advance sales ($1,250 per farmer avg)",
+    "climate_resilience": "Parametric insurance protects against drought/flooding (75% payout)",
+    "reputation_building": "Portable credit scores enable access to future financing",
+    "supply_chain_security": "Buyers get guaranteed supply at fair prices"
+  },
   "tech_stack": [
     "Solidity 0.8.20+",
     "Hardhat",
     "React 18 + TypeScript",
     "Thirdweb SDK v5",
-    "Celo Blockchain",
-    "OpenZeppelin Libraries"
+    "Celo Blockchain (Sepolia Testnet)",
+    "OpenZeppelin Libraries",
+    "USDC (6 decimals)"
   ],
-  "features": [
-    "Milestone-Based Financing",
-    "Oracle Verification",
-    "Portable Reputation System",
-    "Climate Resilience (Phase 2)",
-    "Mobile-First Design"
-  ],
-  "status": "Deployed & Working on Celo Sepolia Testnet",
-  "license": "Proprietary - All rights reserved by Nico",
+  "features": {
+    "coordination": [
+      "Purchase Commitments (buyers → farmers)",
+      "Milestone Escrows (4-stage verified releases)",
+      "Oracle Network (satellite + field verification)"
+    ],
+    "financial_inclusion": [
+      "Mobile-first on Celo",
+      "USDC stable payments",
+      "Ultra-low fees (<$0.01)"
+    ],
+    "community_resilience": [
+      "Parametric climate insurance (10% premium pool)",
+      "Automatic drought/flood payouts (75% coverage)",
+      "No reputation penalty for insured events"
+    ],
+    "portable_trust": [
+      "Reputation Badge NFTs",
+      "Harvest NFTs (proof of completion)",
+      "Cross-platform credit history"
+    ]
+  },
+  "status": "✅ Deployed & Working on Celo Sepolia Testnet",
+  "deployment_date": "2025-10-08",
+  "license": "Proprietary - All rights reserved",
   "created": "2025-10-06",
-  "updated": "2025-10-06"
+  "updated": "2025-10-16"
 }
