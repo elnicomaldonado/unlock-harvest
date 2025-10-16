@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 TL;DR - What Judges Need to Know
+## 🎯 TL;DR - What I Would Like you to Know
 
 **Problem:** 70% of cacao farmers in Ecuador are forced to sell future harvests at 40-60% below market price due to 6-month working capital gap.
 
