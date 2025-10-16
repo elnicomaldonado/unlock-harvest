@@ -1,3 +1,66 @@
+# 🌱 UnlockHarvest - RealFi Hack 2025
+
+> **Coordination Infrastructure for Agriculture Finance**
+> 
+> Oracle-verified milestone escrow enabling fair financing for smallholder farmers. Deployed on Celo.
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-unlock--harvest.replit.app-green)](https://unlock-harvest.replit.app)
+[![Video Demo](https://img.shields.io/badge/Video%20Demo-YouTube-red)](YOUR_YOUTUBE_URL)
+[![Network](https://img.shields.io/badge/Network-Celo%20Sepolia-yellow)](https://explorer.celo.org/alfajores)
+
+---
+
+## 🎯 TL;DR - What Judges Need to Know
+
+**Problem:** 70% of cacao farmers in Ecuador are forced to sell future harvests at 40-60% below market price due to 6-month working capital gap.
+
+**Solution:** Oracle-verified milestone escrow contracts that release USDC payments throughout the growing season at 4 verified stages (planting, growth, pre-harvest, delivery).
+
+**Innovation:** Satellite-based verification + portable reputation NFTs + parametric climate insurance (Phase 2 vision).
+
+**Status:** ✅ Deployed & Working on Celo Sepolia Testnet
+
+### Smart Contracts Deployed
+
+| Contract | Address | Status |
+|----------|---------|--------|
+| CommitmentMarketplace | `0x5e3b189eA42c90d23796Ee21e44f56b8B219e48a` | ✅ Verified |
+| CacaoEscrow | `0x4B0291561f3Bc9cd7a72f4124E10020444f3a15d` | ✅ Verified |
+| FarmerReputationBadge | `0xB2A9cfDD05E44078a1e21d9193d126BBf3ED501c` | ✅ Verified |
+| CacaoHarvestNFT | `0xB28e3a03A73Ee67604F019C56E27382b133240Bb` | ✅ Verified |
+| Oracle | `0x751E3EF3858102230FcbFcbaD0B212a4235DF59C` | ✅ Active |
+
+### Key Features
+
+🌱 **Milestone-Based Financing** - Farmers get paid as they work, not after 6 months  
+🛰️ **Oracle Verification** - Satellite monitoring of crop quality & deforestation  
+🏆 **Portable Reputation** - NFT-based credit history that travels with farmers  
+🌍 **Climate Resilience** - Phase 2: Parametric insurance for weather events  
+📱 **Mobile-First** - Built on Celo for smartphone accessibility  
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/your-repo/unlock-harvest
+cd unlock-harvest
+
+# Install dependencies
+npm install
+
+# Start local blockchain
+npx hardhat node
+
+# Deploy contracts
+npx hardhat run scripts/deploy.js --network localhost
+
+# Start frontend
+cd client
+npm run dev
+```
+
+---
+
 # 🌱 Unlock Harvest v2.0 - Complete Ecosystem
 
 **"Purchase Commitments + Reputation Credit + Parametric Insurance"**

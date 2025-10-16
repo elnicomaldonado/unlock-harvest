@@ -1,0 +1,54 @@
+{
+  "name": "UnlockHarvest - RealFi Hack 2025",
+  "description": "Oracle-verified milestone escrow enabling fair financing for smallholder farmers. Deployed on Celo with built-in climate insurance and portable reputation NFTs.",
+  "track": "RealFi",
+  "bounty": "Coordination Infrastructure",
+  "team": [
+    {
+      "name": "Your Name",
+      "role": "Full Stack Developer",
+      "github": "your-github-username"
+    }
+  ],
+  "demo": {
+    "url": "https://unlock-harvest.replit.app",
+    "video": "YOUR_YOUTUBE_URL"
+  },
+  "repository": {
+    "url": "https://github.com/your-repo/unlock-harvest",
+    "branch": "main"
+  },
+  "contracts": {
+    "network": "Celo Sepolia Testnet",
+    "addresses": {
+      "CommitmentMarketplace": "0x5e3b189eA42c90d23796Ee21e44f56b8B219e48a",
+      "CacaoEscrow": "0x4B0291561f3Bc9cd7a72f4124E10020444f3a15d",
+      "FarmerReputationBadge": "0xB2A9cfDD05E44078a1e21d9193d126BBf3ED501c",
+      "CacaoHarvestNFT": "0xB28e3a03A73Ee67604F019C56E27382b133240Bb",
+      "Oracle": "0x751E3EF3858102230FcbFcbaD0B212a4235DF59C"
+    }
+  },
+  "problem": "70% of cacao farmers in Ecuador are forced to sell future harvests at 40-60% below market price due to 6-month working capital gap.",
+  "solution": "Oracle-verified milestone escrow contracts that release USDC payments throughout the growing season at 4 verified stages (planting, growth, pre-harvest, delivery).",
+  "innovation": "Satellite-based verification + portable reputation NFTs + parametric climate insurance (Phase 2 vision).",
+  "impact": "Enables fair financing for smallholder farmers, reduces supply chain risk for buyers, and creates portable credit history for agricultural workers.",
+  "tech_stack": [
+    "Solidity 0.8.20+",
+    "Hardhat",
+    "React 18 + TypeScript",
+    "Thirdweb SDK v5",
+    "Celo Blockchain",
+    "OpenZeppelin Libraries"
+  ],
+  "features": [
+    "Milestone-Based Financing",
+    "Oracle Verification",
+    "Portable Reputation System",
+    "Climate Resilience (Phase 2)",
+    "Mobile-First Design"
+  ],
+  "status": "Deployed & Working on Celo Sepolia Testnet",
+  "license": "MIT",
+  "created": "2025-10-06",
+  "updated": "2025-10-06"
+}
